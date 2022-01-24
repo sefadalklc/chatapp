@@ -7,6 +7,9 @@ const signup=async (email,parola,kullaniciAd)=>{
 
     hata.value=null;
     try {
+        if(kullaniciAd.trim()===' '){
+            throw new Error('kullanıcı adı boş geçilemez')
+        }
         const res=await auth.createUserWithEmailAndPassword(email,parola);
 
         if(!res){

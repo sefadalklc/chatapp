@@ -6,6 +6,9 @@
 <input type="password" placeholder="Parola giriniz" v-model="parola"/>
 <button>Üye Ol</button>
   </form>
+  <div class="error">
+    {{hata}}
+  </div>
 </template>
 
 <script>
@@ -24,7 +27,7 @@ export default {
             await signup(email.value,parola.value,kullaniciAd.value);
         }
 
-        return {kullaniciAd,email,parola,uyeOl}
+        return {kullaniciAd,email,parola,uyeOl,hata}
     }
 }
 </script>
