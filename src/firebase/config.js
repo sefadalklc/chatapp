@@ -1,22 +1,23 @@
-import firebase from 'firebase/app';
+import firebase from "firebase/compat/app";
 
-import 'firebase/firestore';
+import "firebase/compat/firestore";
+
+import "firebase/compat/auth";
 
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyA6AwHgsT8md5aLedJO39mBXQlkb8U-Ba0",
-    authDomain: "blog-app-52447.firebaseapp.com",
-    projectId: "blog-app-52447",
-    storageBucket: "blog-app-52447.appspot.com",
-    messagingSenderId: "426755574040",
-    appId: "1:426755574040:web:19b1710d74271dce08b66d",
-    measurementId: "G-8S3KMF9JQK"
-  };
+  apiKey: "AIzaSyCVPSdv23-HqDRN8ftvOTWnUcR3_rwsIk8",
+  authDomain: "vue-3-projeler.firebaseapp.com",
+  projectId: "vue-3-projeler",
+  storageBucket: "vue-3-projeler.appspot.com",
+  messagingSenderId: "315486710992",
+  appId: "1:315486710992:web:aef697c4ada16c2c66c2d5"
+};
 
   firebase.initializeApp(firebaseConfig);
 
   const db=firebase.firestore();
   const tarih=firebase.firestore.FieldValue.serverTimestamp;
+  const auth=firebase.auth()
 
-  export{db,tarih}
+  export{db,tarih,auth}

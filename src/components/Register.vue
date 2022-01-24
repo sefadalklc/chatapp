@@ -10,14 +10,18 @@
 
 <script>
 import {ref} from 'vue'
+import useRegister from '../composables/useRegister'
 export default {
     setup(){
         const kullaniciAd=ref('')
         const email=ref('')
         const parola=ref('')
 
-        const uyeOl=()=>{
-            console.log(kullaniciAd.value,email.value,parola.value);
+        const {hata,signup}=useRegister()
+
+        const uyeOl= async ()=>{
+           // console.log(kullaniciAd.value,email.value,parola.value);
+            await signup(email.value,parola.value,kullaniciAd.value);
         }
 
         return {kullaniciAd,email,parola,uyeOl}
