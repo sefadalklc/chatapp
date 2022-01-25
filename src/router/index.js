@@ -1,7 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import ChatOda from '../views/ChatOda.vue'
+import {auth} from '../firebase/config'
 
+
+const authKontrol=(to,from,next)=>{
+
+  const kullanici=auth.currentUser;
+
+  if(!kullanici){
+    next({name:'Home'})
+  }else{
+    next()
+  }
+  
+}
 
 const routes = [
   {
@@ -12,7 +25,8 @@ const routes = [
   {
     path: '/chat',
     name: 'ChatOda',
-    component: ChatOda
+    component: ChatOda,
+    beforeEnter:authKontrol
   }
 ]
 
