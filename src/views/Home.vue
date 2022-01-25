@@ -2,11 +2,11 @@
   <div class="home container">
     <h2>Chat App</h2>
     <div v-if="uyeMi">
-      <Login />
+      <Login @login="chatBasla"/>
       <p>Üye Olmak için <span @click="uyeMi=false" >Üye Ol</span> sayfasına gidiniz</p>
     </div>
     <div v-else>
-      <Register />
+      <Register @register="chatBasla" />
       <p>Griş Yapmak İçin <span @click="uyeMi=true" >Giriş</span> sayfasına gidiniz</p>
     </div>
   </div>
@@ -16,6 +16,7 @@
 import Register from '../components/Register.vue';
 import Login from '../components/Login.vue';
 import {ref} from 'vue'
+import {useRouter } from 'vue-router'
 
 
 export default {
@@ -27,7 +28,12 @@ export default {
   
   setup(){
     const uyeMi=ref(true)
-    return{uyeMi}
+    const router=useRouter();
+
+    const chatBasla=()=>{
+      router.push({name:'ChatOda'})
+    }
+    return{uyeMi,chatBasla}
   }
 }
 </script>

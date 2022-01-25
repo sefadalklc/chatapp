@@ -15,7 +15,7 @@
 import {ref} from 'vue'
 import useRegister from '../composables/useRegister'
 export default {
-    setup(){
+    setup(props,context){
         const kullaniciAd=ref('')
         const email=ref('')
         const parola=ref('')
@@ -25,6 +25,9 @@ export default {
         const uyeOl= async ()=>{
            // console.log(kullaniciAd.value,email.value,parola.value);
             await signup(email.value,parola.value,kullaniciAd.value);
+            if(!hata.value){
+              context.emit('register')
+            }
         }
 
         return {kullaniciAd,email,parola,uyeOl,hata}

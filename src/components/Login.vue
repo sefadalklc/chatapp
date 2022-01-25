@@ -17,7 +17,7 @@ import useLogin from '../composables/useLogin'
 
 export default {
   
-    setup(){
+    setup(props,context){
         
         const email=ref('')
         const parola=ref('')
@@ -26,6 +26,9 @@ export default {
 
         const girisYap= async ()=>{
             login(email.value,parola.value);
+            if(!hata.value){
+              context.emit('login')
+            }
         }
 
         return {email,parola,girisYap,hata}
