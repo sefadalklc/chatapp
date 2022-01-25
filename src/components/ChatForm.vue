@@ -8,6 +8,7 @@
 
 <script>
 import getUser from '../composables/getUser'
+import useCollection from '../composables/useCollection'
 import {tarih} from '../firebase/config'
 import {ref} from 'vue'
 
@@ -17,14 +18,21 @@ export default {
 
         const mesaj=ref('');
 
+        const{belgeEkle,hata}=useCollection('mesajlar')
+
         const gonder =async()=>{
             const chat ={
                 kullanici:kullanici.value.displayName,
                 mesaj:mesaj.value,
                 olusturulmaTarihi:tarih()
             }
-            console.log(chat);
-            mesaj.value=''
+            await belgeEkle(chat);
+            //console.log(chat);
+            if(!hata.value){
+                mesaj.value=''
+            }else{
+                mesaj.value=hata.value
+            }
         }
         return {mesaj,gonder}
     }
@@ -44,11 +52,7 @@ input{
     max-width: 100%;
     margin-bottom: 5px;
     padding: 10px;
-    box-sizing: border-box;
-    border: 5px;
-    border-radius: 10px;
-    font-family: inherit;
-    outline: none;
+    
 }
 
 </style>
