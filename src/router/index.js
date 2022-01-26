@@ -16,11 +16,25 @@ const authKontrol=(to,from,next)=>{
   
 }
 
+
+const chatKontrol=(to,from,next)=>{
+
+  const kullanici=auth.currentUser;
+
+  if(kullanici){
+    next({name:'ChatOda'})
+  }else{
+    next()
+  }
+  
+}
+
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    beforeEnter:chatKontrol
   },
   {
     path: '/chat',
